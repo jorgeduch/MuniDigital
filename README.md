@@ -88,3 +88,4 @@ pre-commit run --all-files              # detect-secrets
 ## Documentación
 
 Los informes de evaluación en PDF están en [`docs/`](docs/).
+
