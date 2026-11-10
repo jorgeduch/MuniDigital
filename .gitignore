@@ -1,0 +1,39 @@
+# Secretos y entorno
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+secrets/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+
+# Django
+db.sqlite3
+*.sqlite3
+*.log
+media/
+staticfiles/
+
+# Node / React
+node_modules/
+build/
+dist/
+npm-debug.log*
+.eslintcache
+
+# Editores y sistema
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

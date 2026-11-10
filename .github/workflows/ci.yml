@@ -1,0 +1,32 @@
+name: CI seguridad
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  security-checks:
+    name: security-checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar herramientas
+        run: pip install bandit pip-audit detect-secrets
+
+      - name: Detectar secretos (detect-secrets)
+        run: git ls-files -z | xargs -0 detect-secrets-hook
+
+      - name: SAST con Bandit
+        run: |
+          if [ -d backend ]; then bandit -r backend -ll; else echo "backend/ aun no existe"; fi
+
+      - name: SCA con pip-audit
+        run: |
+          if [ -f backend/requirements.txt ]; then pip-audit -r backend/requirements.txt; else echo "requirements.txt aun no existe"; fi
